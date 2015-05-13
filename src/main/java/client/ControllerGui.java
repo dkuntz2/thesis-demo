@@ -12,13 +12,14 @@ import co.kuntz.demo.demogui.DemoGUI;
 
 public class ControllerGui extends JFrame implements ActionListener {
     public static final String DATABASE_NAME = "datastore.db";
+    public static final String CACHED_NAME = "cached.db";
 
     private RemoteDataMapperServer dmServer;
     private WebServer server;
 
     private boolean serverRunning, dmServerRunning;
     private JLabel serverStatus, dmServerStatus;
-    private JButton toggleServer, toggleDmServer, makeGuiClient, openWebPage;
+    private JButton toggleServer, toggleDmServer, makeGuiClient, openWebPage, clearDbBtn;
 
     public ControllerGui() {
         super("Demo Control Panel");
@@ -64,7 +65,7 @@ public class ControllerGui extends JFrame implements ActionListener {
         dmServer = new RemoteDataMapperServer(DATABASE_NAME);
 
         JPanel dmPanel = new JPanel();
-        dmPanel.setLayout(new GridLayout(2, 1, 5, 5));
+        dmPanel.setLayout(new GridLayout(3, 1, 5, 5));
 
         JPanel dmStatusPane = new JPanel();
         dmStatusPane.setLayout(new FlowLayout());
@@ -77,6 +78,10 @@ public class ControllerGui extends JFrame implements ActionListener {
         toggleDmServer = new JButton(dmServerRunning ? "Stop Data Mapper Server" : "Start Data Mapper Server");
         toggleDmServer.addActionListener(this);
         dmPanel.add(toggleDmServer);
+
+        clearDbBtn = new JButton("Clear Server DB");
+        clearDbBtn.addActionListener(this);
+        dmPanel.add(clearDbBtn);
 
         add(dmPanel);
 
@@ -127,7 +132,7 @@ public class ControllerGui extends JFrame implements ActionListener {
         } else if (makeGuiClient == e.getSource()) {
             new Thread(new Runnable() {
                 @Override public void run() {
-                    new DemoGUI();
+                    new DemoGUI(CACHED_NAME);
                 }
             }).start();
         } else if (openWebPage != null && openWebPage == e.getSource()) {
@@ -140,6 +145,8 @@ public class ControllerGui extends JFrame implements ActionListener {
             } else {
                 JOptionPane.showMessageDialog(this, "Server isn't running.");
             }
+        } else if (clearDbBtn == e.getSource()) {
+            server.clearDB();
         }
     }
 }

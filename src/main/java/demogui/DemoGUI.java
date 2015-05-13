@@ -13,14 +13,14 @@ public class DemoGUI extends JFrame {
     JTabbedPane userTabs, noteTabs;
 
     JTextField inputUsername, inputEmail, inputRealName, inputNoteName, inputNoteText;
-    JButton addUser, addNote;
+    JButton addUser, addNote, clearCache, refreshData;
 
     RemoteCachedDataMapper dataMapper;
 
-    public DemoGUI() {
+    public DemoGUI(String dbName) {
         super("Remote Data Mapper Demo");
 
-        dataMapper = new RemoteCachedDataMapper("cached.db");
+        dataMapper = new RemoteCachedDataMapper(dbName);
 
         //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDefaultLookAndFeelDecorated(true);
@@ -124,6 +124,33 @@ public class DemoGUI extends JFrame {
 
         notesPanel.add(makeNote);
         main.addTab("Notes", notesPanel);
+
+
+        JPanel etc = new JPanel();
+        etc.setLayout(new FlowLayout());
+
+        clearCache = new JButton("Clear Cache");
+        clearCache.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+                dataMapper.clearCache();
+                userTabs.removeAll();
+                noteTabs.removeAll();
+            }
+        });
+        etc.add(clearCache);
+
+        refreshData = new JButton("Refresh Data");
+        refreshData.addActionListener(new ActionListener() {
+            @Override public void actionPerformed(ActionEvent e) {
+                dataMapper.clearCache();
+                getUsers();
+                getNotes();
+            }
+        });
+        etc.add(refreshData);
+
+        main.addTab("Etc", etc);
+
 
         setVisible(true);
     }

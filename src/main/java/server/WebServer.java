@@ -169,4 +169,11 @@ public class WebServer extends HttpServer {
 
         return path;
     }
+
+    public void clearDB() {
+        Map<String, String> items = dataMapper.getAll();
+        for (String key : items.keySet()) {
+            dataMapper.delete(key);
+        }
+    }
 }
