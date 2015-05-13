@@ -22,7 +22,7 @@ public class DemoGUI extends JFrame {
 
         dataMapper = new RemoteCachedDataMapper("cached.db");
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setDefaultLookAndFeelDecorated(true);
         setSize(600, 350);
 

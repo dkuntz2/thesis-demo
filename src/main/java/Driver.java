@@ -5,21 +5,25 @@ import co.kuntz.sqliteEngine.core.*;//RemoteDataMapperServer;
 
 import co.kuntz.demo.demogui.DemoGUI;
 
+import co.kuntz.demo.client.ControllerGui;
+
 public class Driver {
     public static void main(String[] args) {
-        String database = "datastore.db";
+        //String database = "datastore.db";
 
-        WebServer server = new WebServer(database);
-        new Thread(server).start();
+        //WebServer server = new WebServer(database);
+        //new Thread(server).start();
 
-        RemoteDataMapperServer dmServer = new RemoteDataMapperServer(database);
-        new Thread(dmServer).start();
+        //RemoteDataMapperServer dmServer = new RemoteDataMapperServer(database);
+        //new Thread(dmServer).start();
 
-        try {
-            Thread.sleep(500);
-        } catch (Throwable t) {
-            // meh.
-        }
-        new DemoGUI();
+        //try {
+            //Thread.sleep(500);
+        //} catch (Throwable t) {
+            //// meh.
+        //}
+        //new DemoGUI();
+
+        new ControllerGui();
     }
 }
