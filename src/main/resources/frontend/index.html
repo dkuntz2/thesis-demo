@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="jquery.js"></script>
+        <script src="lodash.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <div id="users">
+            <h1>Users!</h1>
+            <ul id="usersList"></ul>
+
+            <form id="addUser">
+                <label for="username">username</label><br>
+                <input type="text" name="username" id="username" />
+
+                <br><br>
+                <label for="emailAddress">email address</label><br>
+                <input type="text" name="emailAddress" id="emailAddress" />
+
+                <br><br>
+                <label for="realName">real name</label>
+                <input type="text" name="realName" id="realName" />
+
+                <br><br>
+                <input type="submit" />
+            </form>
+        </div>
+
+        <div id="notes">
+            <h1>Notes!</h1>
+            <ul id="notesList"></ul>
+
+            <form id="addNote">
+                <label for="title">Title</label><br>
+                <input type="text" name="title" id="title">
+
+                <br><br>
+                <label for="noteText">Note text</label>
+                <textarea name="noteText" id="noteText"></textarea>
+
+                <br><br>
+                <input type="submit">
+        </div>
+    </body>
+</html>
+

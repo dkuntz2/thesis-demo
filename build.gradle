@@ -1,0 +1,14 @@
+apply plugin: "application"
+apply plugin: "java"
+
+mainClassName = 'co.kuntz.demo.Driver'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile files('./src/main/resources/ormthing.jar')
+    //compile 'com.google.code.gson:gson:2.3.1'
+    //compile 'org.xerial:sqlite-jdbc:3.8.7'
+}
